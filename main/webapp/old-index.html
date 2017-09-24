@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>WebExample</title>
+</head>
+<body>
+<script src="static/jquery-1.11.2.min.js"></script>
+<h3>WebExample</h3>  
+My happiness level is: <span style="font-weight: bold;" id="happyness" class="happyness">0</span> <input type="submit" id="refresh-button" value="Refresh" class='refresh-button'> <br/> <br/>
+
+<img src="static/erdem.jpg" width="40%"  />
+
+<script>
+
+$(document).ready(function(){
+    	setInterval(function(){
+    		$.ajax({
+	            url     : '/api/status/',
+	            type    : 'GET',
+	        })
+	        .done(function(data) {
+	        	// var data = JSON.parse(data);
+	        	console.log(data.connectionStatus);
+	            $('#happyness').text(data.EnjoyLevel);
+	        })
+	        .fail(function(jqxhr, status, err) {
+	            	alert('Something went wrong :-(');
+	        });
+    	},2000);//call GET every 2000ms
+        $('.refresh-button').click(function() {
+	        $.ajax({
+	            url     : '/api/status/',
+	            type    : 'GET',
+	        })
+	        .done(function(data) {
+	        	// var data = JSON.parse(data);
+	        	console.log(data.connectionStatus);
+	            $('#happyness').text(data.EnjoyLevel);
+	        })
+	        .fail(function(jqxhr, status, err) {
+	            	alert('Something went wrong :-(');
+	        });
+	    });
+});
+</script>
+<br/>
+
+</body>

@@ -1,0 +1,189 @@
+<div ng-controller="CardCtrl" ng-cloak="" class="carddemoBasicUsage">
+	<style>
+table {
+	width: 100%;
+}
+
+table#t01, th, td {
+	border: 1px solid #bdbdbd;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px;
+	text-align: left;
+}
+
+table#t01 tr:nth-child(even) {
+	background-color: #eee;
+}
+
+table#t01 tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+table#t01 th {
+	background-color: #2196f3;
+	color: white;
+}
+</style>
+
+	<!-- <md-toolbar class="md-hue-2"> -->
+	<!--       <div class="md-toolbar-tools"> -->
+	<!--         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true"> -->
+	<!--           <md-icon md-svg-icon="img/icons/menu.svg"></md-icon> -->
+	<!--         </md-button> -->
+
+	<!--         <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2> -->
+
+	<!--         <md-button class="md-icon-button" aria-label="Favorite"> -->
+	<!--           <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon> -->
+	<!--         </md-button> -->
+
+	<!--         <md-button class="md-icon-button" aria-label="More"> -->
+	<!--           <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
+	<!--         </md-button> -->
+	<!--       </div> -->
+	<!--     </md-toolbar> -->
+
+	<md-content class="md-padding" layout="row" layout-wrap=""
+		layout-align="center start" layout-xs="column">
+	<div flex="49" layout="column" style="margin: 3px">
+		<md-toolbar style="background: #2196f3" slide-toggle="#derp"
+			class="demo-toolbar md-primary _md _md-toolbar-transitions"
+			layout-padding>
+		<h2 style="padding: 0px 8px; color: white"
+			class="ng-binding ng-isolate-scope">Netatmo Indoor Device</h2>
+		<div class="md-toolbar-tools">
+			<p style="color: #bbdefb" class="ng-binding ng-isolate-scope">
+				Temp: {{indoorDevice.Temperature}}C | Pres:
+				{{indoorDevice.Pressure}} mbar | Hum:{{indoorDevice.Humidity}} |
+				CO2:{{indoorDevice.CO2}}</p>
+		</div>
+		</md-toolbar>
+		<div id="derp" class="slideable">
+			<md-card>
+
+			<table id="t01" style="padding: 10px;">
+				<tr>
+					<td><span>Device ID:</span></td>
+					<td><span>{{indoorDevice.id}}</span></td>
+				</tr>
+				<tr>
+					<td><span>Abosulute Pressure :</span></td>
+					<td><span>{{indoorDevice.AbsolutePressure}}</span></td>
+				</tr>
+				<tr>
+					<td><span>CO2:</span></td>
+					<td><span>{{indoorDevice.CO2}}</span></td>
+				</tr>
+				<tr>
+					<td><span>Humidity:</span></td>
+					<td><span>{{indoorDevice.Humidity}}</span></td>
+				</tr>
+				<tr>
+					<td><span>Pressure:</span></td>
+					<td><span>{{indoorDevice.Pressure}}</span></td>
+				</tr>
+				<tr>
+					<td><span>Measurement Time:</span></td>
+					<td><span>{{indoorDevice.date_min_temp}}<span
+							ng-show="{{indoorDevice.date_min_temp}}">-</span>{{indoorDevice.date_max_temp}}
+					</span></td>
+				</tr>
+				<tr>
+					<td><span>Temperature:</span></td>
+					<td><span>{{indoorDevice.Temperature}}</span></td>
+				</tr>
+				<tr>
+					<td><span>Max Device Temperature:</span></td>
+					<td><span>{{indoorDevice.max_temp}}</span></td>
+				</tr>
+				<tr>
+					<td><span>Min Device Temperature: </span></td>
+					<td><span>{{indoorDevice.min_temp}}</span></td>
+				</tr>
+				<tr>
+					<td><span>Request Time:</span></td>
+					<td><span>{{indoorDevice.time_utc}}</span></td>
+				</tr>
+			</table>
+
+			</md-card>
+		</div>
+	</div>
+	<div flex="49" layout="column" style="margin: 3px">
+		<md-toolbar style="background: #2196f3"
+			slide-toggle="#netatmo-outdoor"
+			class="demo-toolbar md-primary _md _md-toolbar-transitions"
+			layout-padding ng-repeat="device in outdoorDevices">
+
+		<h2 style="padding: 0px 8px; color: white"
+			class="ng-binding ng-isolate-scope">Netatmo Outdoor Device</h2>
+		<div class="md-toolbar-tools">
+			<p style="color: #bbdefb" class="ng-binding ng-isolate-scope">
+				Temp: {{device.Temperature}}C | Hum:{{device.Humidity}}</p>
+		</div>
+		</md-toolbar>
+		<div style="padding: 0px 8px" id="netatmo-outdoor" class="slideable">
+			<md-card ng-repeat="device in outdoorDevices"> <!-- <md-card-title>
+                      <md-card-title-text>
+                          <span class="md-headline">Outdoor Devices</span>
+                      </md-card-title-text>
+                  </md-card-title> -->
+			<table id="t01" style="padding: 10px;">
+				<tr ng-repeat="(key, val) in device " data-title="key">
+					<td><span>{{key}}:</span></td>
+					<td><span>{{val}}</span></td>
+				</tr>
+			</table>
+			</md-card>
+		</div>
+	</div>
+
+	<div class='md-padding' layout="row" layout-wrap>
+		<md-card ng-repeat="device in kuraDevices">
+		<section layout="row" style="background: #2196f3; color: #bbdefb;"
+			layout-sm="column" layout-align="center center" layout-wrap>
+			<div layout="row">
+				<div flex align="left">
+					<font size="5">{{device.Model}} | ID = {{device.ID}}</font>
+				</div>
+				<!-- 				<div flex align="left"><font size="3">ID = {{device.ID}}</font></div> -->
+			</div>
+			<div layout="column">
+				<!--   <div flex>First item in column</div> -->
+				<div flex align="right">
+
+
+					<md-button ng-click="removeDevice(device)"
+						class="md-fab md-warn md-hue-2 md-mini" aria-label="Remove Device">
+					<i class="material-icons" style="color: white;">clear</i> </md-button>
+					<md-button ng-click="keepDevice(device)"
+						class="md-fab md-mini md-raised"
+						aria-label="Send Keep Alive message"> <i
+						class="material-icons" style="color: #2196f3;">send</i> </md-button>
+
+					<md-switch ng-model="data.cb1" class="md-raised"
+						ng-change="changeText(data.cb1,device)" aria-label="Switch 1">
+					Active: {{data.cb1}} </md-switch>
+
+				</div>
+			</div>
+
+		</section>
+		<section layout="row" layout-sm="column" layout-align="center center"
+			layout-wrap>
+			<table id="t01" style="">
+				<tr ng-repeat="(key, value) in device" data-title="key">
+					<td><span>{{key}}</span></td>
+					<td><span>{{value}}</span></td>
+				</tr>
+
+
+			</table>
+		</section>
+		</md-card>
+	</div>
+	</md-content>
+</div>

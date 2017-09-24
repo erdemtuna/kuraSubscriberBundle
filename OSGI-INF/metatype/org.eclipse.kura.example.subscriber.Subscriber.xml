@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MetaData xmlns="http://www.osgi.org/xmlns/metatype/v1.2.0" localization="en_us">
+    <OCD id="org.eclipse.kura.example.subscriber.Subscriber"
+        name="Subscriber"
+        description="This is a sample metatype file for a simple subscriber component">
+
+        <AD id="broker.name"
+            name="broker.name"
+            type="String"
+            cardinality="0"
+            required="true"
+            default="tcp://127.0.0.1:1883"
+            description="Broker name"/>
+
+        <AD id="clientId.name"
+            name="clientId.name"
+            type="String"
+            cardinality="0"
+            required="true"
+            default="cem"
+            description="Client ID"/>
+
+        <AD id="topic.name"
+            name="topic.name"
+            type="String"
+            cardinality="0"
+            required="true"
+            default="test/temperature"
+            description="Topic name to be subscribed"/>
+            
+        <AD id="Node"
+        	name="Node"
+            type="String"
+            cardinality="0"
+            required="false"
+            default="0"
+            description="Output of the node"/>
+                    
+        <AD id="nisAlive"
+            name="nisAlive"
+            type="String"
+            cardinality="0"
+            required="false"
+            default="never"
+            description="Last time keepAlive message requested and received from node"/>
+            
+        <AD id="EdgeNode"
+            name="EdgeNode"
+            type="String"
+            cardinality="0"
+            required="false"
+            default="0"
+            description="Output of the edgenode"/>
+                     
+        <AD id="enisAlive"
+            name="enisAlive"
+            type="String"
+            cardinality="0"
+            required="false"
+            default="never"
+            description="Last time keepAlive message requested and received from edgenode"/>   
+            
+        <AD id="nAlive"
+            name="nAlive"
+            type="String"
+            cardinality="0"
+            required="false"
+            default="0"
+            description="Type -1- to send a keepAlive message to node"/>
+            
+        <AD id="enAlive"
+            name="enAlive"
+            type="String"
+            cardinality="0"
+            required="false"
+            default="0"
+            description="Type -1- to send a keepAlive message to edgenode"/>
+    </OCD>
+
+    <Designate pid="org.eclipse.kura.example.subscriber.Subscriber">
+        <Object ocdref="org.eclipse.kura.example.subscriber.Subscriber"/>
+    </Designate>
+</MetaData>
